@@ -19,7 +19,7 @@ Feature: Pay Bills Page Contents
       | without amount box | Please fill out this field.             | Amount Validation |
       | without date box   | Please fill out this field.             | Date Validation   |
 
-  @wip
+
   Scenario Outline: <field> should not accept <characterType>
     When User fills the form "<explanation>"
     Then "<field>" field should not accept "<characterType>"
@@ -30,3 +30,4 @@ Feature: Pay Bills Page Contents
       | with special characters in amount field      | Amount | special characters      |
       | with alphabetical characters in date field   | Date   | alphabetical characters |
       | with special characters in date field        | Date   | special characters      |
+

@@ -119,4 +119,18 @@ public class PayBillsStepdefs {
             }
         }
     }
+
+    @When("user tries to calculate cost without selecting a currency")
+    public void userTriesToCalculateCostWithoutSelectingACurrency() {
+        BrowserUtils.waitForClickablility(payBillsPage.calculateCostsButton, 5);
+        payBillsPage.calculateCostsButton.click();
+    }
+
+    @Then("error message should be displayed")
+    public void errorMessageShouldBeDisplayed() {
+        BrowserUtils.waitFor(2);
+        Alert alert = Driver.get().switchTo().alert();
+        System.out.println("alert.getText() = " + alert.getText());
+        Assert.assertTrue(alert.getText().contains("ensure that you have filled"));
+    }
 }

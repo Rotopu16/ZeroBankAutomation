@@ -48,6 +48,11 @@ public class PayBillsPage extends BasePage{
     @FindBy(css="#pay_saved_payees")
     public WebElement PayButton;
 
+    @FindBy(css="#pc_calculate_costs")
+    public WebElement calculateCostsButton;
+
+
+
     public void fillPaymentForm(String amount, String date, String description) {
         BrowserUtils.waitForClickablility(amountBox, 2);
         amountBox.sendKeys(amount);
