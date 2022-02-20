@@ -123,6 +123,8 @@ public class PayBillsStepdefs {
     @When("user tries to calculate cost without selecting a currency")
     public void userTriesToCalculateCostWithoutSelectingACurrency() {
         BrowserUtils.waitForClickablility(payBillsPage.calculateCostsButton, 5);
+        payBillsPage.amountBoxInPurcForrCurr.sendKeys("30");
+        payBillsPage.SelectedCurrencyRadioButton.click();
         payBillsPage.calculateCostsButton.click();
     }
 
@@ -132,5 +134,18 @@ public class PayBillsStepdefs {
         Alert alert = Driver.get().switchTo().alert();
         System.out.println("alert.getText() = " + alert.getText());
         Assert.assertTrue(alert.getText().contains("ensure that you have filled"));
+    }
+
+    @When("user tries to calculate cost without entering a value")
+    public void userTriesToCalculateCostWithoutEnteringAValue() {
+        BrowserUtils.waitForClickablility(payBillsPage.calculateCostsButton, 5);
+
+        Select selCurrDrpDwn = new Select(payBillsPage.selCurrDrpDwnElement);
+        selCurrDrpDwn.selectByIndex(2);
+        System.out.println("selCurrDrpDwn.getOptions().get(2).getText() = " + selCurrDrpDwn.getOptions().get(2).getText());
+        BrowserUtils.waitFor(1);
+        payBillsPage.SelectedCurrencyRadioButton.click();
+        payBillsPage.calculateCostsButton.click();
+
     }
 }

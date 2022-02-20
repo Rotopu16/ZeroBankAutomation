@@ -4,54 +4,64 @@ import com.zerobank.utilities.BrowserUtils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class PayBillsPage extends BasePage{
+public class PayBillsPage extends BasePage {
 
     @FindBy(linkText = "Add New Payee")
     public WebElement AddNewPayeeText;
 
-    @FindBy(id= "np_new_payee_name")
+    @FindBy(id = "np_new_payee_name")
     public WebElement PayeeName;
 
-    @FindBy(id= "np_new_payee_address")
+    @FindBy(id = "np_new_payee_address")
     public WebElement PayeeAdress;
 
-    @FindBy(id= "np_new_payee_account")
+    @FindBy(id = "np_new_payee_account")
     public WebElement PayeeAccount;
 
-    @FindBy(id= "np_new_payee_details")
+    @FindBy(id = "np_new_payee_details")
     public WebElement PayeeDetails;
 
-    @FindBy(id= "add_new_payee")
+    @FindBy(id = "add_new_payee")
     public WebElement AddButton;
 
-    @FindBy(css= "div>#alert_content")
+    @FindBy(css = "div>#alert_content")
     public WebElement PayeeAddedText;
 
     @FindBy(linkText = "Purchase Foreign Currency")
     public WebElement PurchaseForeignCurrencyText;
 
-    @FindBy(css="#pc_currency")
+    @FindBy(css = "#pc_currency")
     public WebElement dropdownCurrenciesElement;
 
-    @FindBy(xpath= "//span[contains(text(),'The payment was successfully submitted.')]")
+    @FindBy(xpath = "//span[contains(text(),'The payment was successfully submitted.')]")
     public WebElement successfulPaymentText;
 
-    @FindBy(css="#sp_amount")
+    @FindBy(css = "#sp_amount")
     public WebElement amountBox;
 
-    @FindBy(css="#sp_date")
+    @FindBy(css = "#sp_date")
     public WebElement dateBox;
 
-    @FindBy(css="#sp_description")
+    @FindBy(css = "#sp_description")
     public WebElement descriptionBox;
 
-    @FindBy(css="#pay_saved_payees")
+    @FindBy(css = "#pay_saved_payees")
     public WebElement PayButton;
 
-    @FindBy(css="#pc_calculate_costs")
+    @FindBy(css = "#pc_calculate_costs")
     public WebElement calculateCostsButton;
 
+    @FindBy(css = "#pc_amount")
+    public WebElement amountBoxInPurcForrCurr;
 
+    @FindBy(css = "#pc_inDollars_false")
+    public WebElement SelectedCurrencyRadioButton;
+
+    @FindBy(css = "#pc_inDollars_true")
+    public WebElement USDollarsRadioButton;
+
+    @FindBy(css = "#pc_currency")
+    public WebElement selCurrDrpDwnElement;
 
     public void fillPaymentForm(String amount, String date, String description) {
         BrowserUtils.waitForClickablility(amountBox, 2);
@@ -59,41 +69,33 @@ public class PayBillsPage extends BasePage{
         dateBox.sendKeys(date);
         descriptionBox.sendKeys(description);
     }
+
     public void userFillsTheForm(String withWithout) {
-        switch (withWithout){
+        switch (withWithout) {
             case "accordingly":
-                fillPaymentForm("30","2022-05-08","Hard work pays back"  );
+                fillPaymentForm("30", "2022-05-08", "Hard work pays back");
                 System.out.println("payBillsPage.dateBox.getAttribute() = " + dateBox.getAttribute("value"));
                 break;
             case "without amount box":
-                fillPaymentForm("","2022-05-08","Hard work pays back"  );
+                fillPaymentForm("", "2022-05-08", "Hard work pays back");
                 break;
             case "without date box":
-                fillPaymentForm("30","","Hard work pays back"  );
+                fillPaymentForm("30", "", "Hard work pays back");
                 break;
             case "with alphabetical characters in amount field":
-                fillPaymentForm("abc","2022-05-08","Hard work pays back"  );
+                fillPaymentForm("abc", "2022-05-08", "Hard work pays back");
                 break;
             case "with special characters in amount field":
-                fillPaymentForm("@-/","2022-05-08","Hard work pays back"  );
+                fillPaymentForm("@-/", "2022-05-08", "Hard work pays back");
                 break;
             case "with alphabetical characters in date field":
-                fillPaymentForm("30","abc","Hard work pays back"  );
+                fillPaymentForm("30", "abc", "Hard work pays back");
                 break;
             case "with special characters in date field":
-                fillPaymentForm("30","@?/","Hard work pays back"  );
+                fillPaymentForm("30", "@?/", "Hard work pays back");
                 break;
         }
     }
-
-
-
-
-
-
-
-
-
 
 
 }
